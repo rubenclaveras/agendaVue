@@ -2,6 +2,6 @@ li {
     list-style: none;
 }
 
-#app1 {
-    display: flex;
+.textoAgenda {
+    font-size: 18px;
 }
