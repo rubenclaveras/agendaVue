@@ -106,15 +106,15 @@
                             <h4>Teléfono</h4>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-for="user in usuarios">
                         <div class="col-xs-4">
-                            <p>John Doe</p>
+                            {{user.nombre}}
                         </div>
                         <div class="col-xs-4">
-                            <p>john.doe@deusto.es</p>
+                            {{user.email}}
                         </div>
                         <div class="col-xs-3">
-                            <p>555555555</p>
+                            {{user.telefono}}
                         </div>
                         <div class="col-xs-1">
                             <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
@@ -124,30 +124,7 @@
                 <div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <p>No se ha encontrado ningún contacto.</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="app1">
-                                <ol>
-                                    <li v-for="user in usuarios">
-                                        {{user}}
-                                    </li>
-                                </ol>
-                                <ol>
-                                    <li v-for="email in emails">
-                                        {{email}}
-                                    </li>
-                                </ol>
-                                <ol>
-                                    <li v-for="telefono in telefonos">
-                                        {{telefono}}
-                                    </li>
-                                </ol>
-                            </div>
+                            <p>No se han encontrado mas contactos</p>
                         </div>
                     </div>
                 </div>
@@ -170,21 +147,21 @@
                             <div class="row control-group">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Nombre</label>
-                                    <input v-model="nuevoUsuario" type="text" class="form-control" placeholder="Nombre" id="name">
+                                    <input v-model="nombre" type="text" class="form-control" placeholder="Nombre" id="name">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="row control-group">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Email</label>
-                                    <input v-model="nuevoEmail" type="email" class="form-control" placeholder="Email" id="email">
+                                    <input v-model="email" type="email" class="form-control" placeholder="Email" id="email">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="row control-group">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Teléfono</label>
-                                    <input v-model="nuevoTelefono" type="tel" class="form-control" placeholder="Número de teléfono" id="phone">
+                                    <input v-model="telefono" type="tel" class="form-control" placeholder="Número de teléfono" id="phone">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -265,31 +242,39 @@
         new Vue({
             el: '#app',
             data: {
-                nuevoUsuario: '',
-                nuevoEmail: '',
-                nuevoTelefono: '',
-                usuarios: [
-                    'Ruben',
-                    'Julen',
-                ],
-                emails: [
-                    'ruben@gmail.com',
-                    'julen@gmail.com',
-                ],
-                telefonos: [
-                    '123456789',
-                    '987654321'
-                ],
+                nombre: '',
+                email: '',
+                telefono: '',
+                usuarios: [{
+                    "nombre": "ruben",
+                    "email": "ruben@gmail.es",
+                    "telefono": "123123123"
+                }, {
+                    "nombre": "julen",
+                    "email": "julen@gmail.es",
+                    "telefono": "123456789"
+                }, {
+                    "nombre": "victor",
+                    "email": "victor@gmail.es",
+                    "telefono": "987654321"
+                }, {
+                    "nombre": "gorka",
+                    "email": "gorka@gmail.es",
+                    "telefono": "192837465"
+                }],
 
             },
             methods: {
                 guardarUsuario() {
-                    this.usuarios.push(this.nuevoUsuario);
-                    this.nuevoUsuario = '';
-                    this.emails.push(this.nuevoEmail);
-                    this.nuevoEmail = '';
-                    this.telefonos.push(this.nuevoTelefono);
-                    this.nuevoTelefono = '';
+                    var data = {
+                        nombre: this.nombre,
+                        email: this.email,
+                        telefono: this.telefono,
+                    };
+                    this.usuarios.push(data);
+                    this.nombre = '';
+                    this.email = '';
+                    this.telefono = '';
                 }
             }
         })
