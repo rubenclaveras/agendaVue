@@ -106,15 +106,16 @@
                             <h4>Teléfono</h4>
                         </div>
                     </div>
-                    <div class="row" v-for="(user, index) in usuarios">
+
+                    <div vocab="http://schema.org/" typeof="Person" class="row" v-for="(user, index) in usuarios">
                         <div class="col-xs-4 textoAgenda">
-                            {{user.nombre}}
+                            <span property="name">{{user.nombre}}</span>
                         </div>
                         <div class="col-xs-4 textoAgenda">
-                            {{user.email}}
+                            <span property="email">{{user.email}}</span>
                         </div>
                         <div class="col-xs-3 textoAgenda">
-                            {{user.telefono}}
+                            <span property="telephone">{{user.telefono}}</span>
                         </div>
                         <div class="col-xs-1">
 
